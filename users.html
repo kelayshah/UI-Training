@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="common_styles.css">
+	<link rel="stylesheet" href="users.css">
 	<title>easyCollab - Project Collaboration</title>
 </head>
 
@@ -18,9 +19,10 @@
 	</div>
 	 
 	 <nav class="menu">
-	    <a class="btn-menu" href="index.html">Home</a>
-	    <a class="btn-menu" href="tasks.html">Tasks</a>
-	    <a class="btn-menu" href="users.html">Users</a>
+	    <a class="btn-menu home-head" href="index.html">Home</a>
+	    <a class="btn-menu tasks-head" href="tasks.html">Tasks</a>
+	    <a class="btn-menu users-head" href="users.html">Users</a>
+	    <button class="add-user-btn">Add User</button>
 	  </nav>
 </header>
 
@@ -31,10 +33,10 @@
 	 </div> -->
 
 	  	 <!-- add user -->
-	 <div class="add-user">
+	 <!-- <div class="add-user">
 	 	<button class="add-user-btn">Add User</button>
 	 </div>
-
+ -->
      <!-- main body-->
 	 <div class="body-content">
 
@@ -61,7 +63,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 2">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -73,7 +75,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 3">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -85,7 +87,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 4">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -97,7 +99,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 5">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -109,7 +111,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 6">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -121,7 +123,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 7">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -133,7 +135,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 8">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -145,7 +147,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 9">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -157,7 +159,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 10">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -169,7 +171,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 11">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -181,7 +183,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 12">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -193,7 +195,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 13">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -205,7 +207,7 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 14">
 	 			</section>	
 	 		</li>
 	 		<li class="user">
@@ -217,7 +219,79 @@
 	 				<section class="email">Email ID: abc@def.com</section>
 	 			</section>
 	 			<section class="user-image">
-	 				<img src="user.jpeg" alt="User 1">
+	 				<img src="user.jpeg" alt="User 15">
+	 			</section>	
+	 		</li>
+	 		<li class="user">
+	 			<section class="user-section">
+	 				<section class="user-name">User 16</section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="role">Role: Product Engineer</section>
+	 				<section class="skypeID">Skype ID: abcdef</section>
+	 				<section class="email">Email ID: abc@def.com</section>
+	 			</section>
+	 			<section class="user-image">
+	 				<img src="user.jpeg" alt="User 16">
+	 			</section>	
+	 		</li>
+	 		<li class="user">
+	 			<section class="user-section">
+	 				<section class="user-name">User 17</section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="role">Role: Product Engineer</section>
+	 				<section class="skypeID">Skype ID: abcdef</section>
+	 				<section class="email">Email ID: abc@def.com</section>
+	 			</section>
+	 			<section class="user-image">
+	 				<img src="user.jpeg" alt="User 17">
+	 			</section>	
+	 		</li>
+	 		<li class="user">
+	 			<section class="user-section">
+	 				<section class="user-name">User 18</section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="role">Role: Product Engineer</section>
+	 				<section class="skypeID">Skype ID: abcdef</section>
+	 				<section class="email">Email ID: abc@def.com</section>
+	 			</section>
+	 			<section class="user-image">
+	 				<img src="user.jpeg" alt="User 18">
+	 			</section>	
+	 		</li>
+	 		<li class="user">
+	 			<section class="user-section">
+	 				<section class="user-name">User 19</section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="role">Role: Product Engineer</section>
+	 				<section class="skypeID">Skype ID: abcdef</section>
+	 				<section class="email">Email ID: abc@def.com</section>
+	 			</section>
+	 			<section class="user-image">
+	 				<img src="user.jpeg" alt="User 19">
+	 			</section>	
+	 		</li>
+	 		<li class="user">
+	 			<section class="user-section">
+	 				<section class="user-name">User 20</section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="role">Role: Product Engineer</section>
+	 				<section class="skypeID">Skype ID: abcdef</section>
+	 				<section class="email">Email ID: abc@def.com</section>
+	 			</section>
+	 			<section class="user-image">
+	 				<img src="user.jpeg" alt="User 20">
+	 			</section>	
+	 		</li>
+	 		<li class="user">
+	 			<section class="user-section">
+	 				<section class="user-name">User 21</section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="role">Role: Product Engineer</section>
+	 				<section class="skypeID">Skype ID: abcdef</section>
+	 				<section class="email">Email ID: abc@def.com</section>
+	 			</section>
+	 			<section class="user-image">
+	 				<img src="user.jpeg" alt="User 21">
 	 			</section>	
 	 		</li>
 	 	</ol>

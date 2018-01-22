@@ -1,0 +1,91 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header{
+  background-color: rgb(66,121,149);
+  color: #CEF0D4; 
+  font-family: 'Rouge Script', cursive;  
+  font-weight: normal;
+}
+
+body{
+  background-color: rgb(242,244,249);
+  color: rgb(62,65,79);
+  font: 15px Helvetica Neue,Arial,Helvetica,sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+ul{
+  list-style-type:none;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  text-align: center;
+}
+
+.body-content{
+  display: inline-flex;
+  width: 100%;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.menu{
+  clear: both;
+}
+
+#headname{
+  font-size: 24px;
+  margin-top: 10px;
+  padding-left: 5px;
+  float: left;
+  text-shadow: 1px 1px 2px #082b34;
+}
+
+#logo{
+  margin-top: 10px;
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+
+.main-heading{
+  width: 240px;
+  margin-left: 637px; /*It is the half of the number of pixels left, to position in the middle.*/
+}
+
+.btn-menu {
+  background-color: rgb(203,238,249);
+  color: rgb(39,71,40);
+  font: 14px Helvetica;
+  font-variant: small-caps;
+  font-size: 20px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 2px;
+  /*margin-top: 5px;*/
+  margin-left: 5px;
+  border: 1px solid #dfe2e5;
+  padding: 5px 15px;
+}
+
+.body-header{
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+  background-color: rgb(238,174,86);
+}
+
+#head-body{
+  font: 24px Arial;
+  font-variant: small-caps;
+  color: rgb(62,65,79);
+}
