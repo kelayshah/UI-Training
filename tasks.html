@@ -12,10 +12,6 @@
 			<img id="logo" src="logo.jpg">
 			<span id="headname"> easyCollab</span>
 		</section>
-		
-	    <!--<section id="side-heading">
-	    	<h3 id="sidename">Project Collaboration</h3>
-	    </section>-->
 	</div>
 	 
 	 <nav class="menu">
@@ -26,10 +22,43 @@
 </header>
 
 <body>
-	<!-- body header -->
-	 <!-- <div class="body-header">
-	 	<section id="head-body">Tasks</section> 
-	 </div> -->
+
+	<!--  add task popup -->
+	 <div id="add-task-popup" class="overlay">
+		<div class="popup">
+			<h2>Add a new task</h2>
+			<a class="close" href="#">×</a>
+			<div class="add-task-popup-content">
+				<form id="add-task-form" onsubmit="addTask();return false;">
+					<label for="new-task-name">Task Name:</label>
+					<input type="text" name="new-task-name" id="new-task-name" autocomplete="off" required>
+
+					<br>
+					<label for="new-task-status">Task Status:</label>
+					<select name="new-task-status" id="new-task-status">
+					  <option value="todo" selected>Todo</option>
+					  <option value="doing">Doing</option>
+					  <option value="done">Done</option>
+					</select>
+
+					<br>
+					<label for="new-task-priority">Task Priority:</label>
+					<select name="new-task-priority" id="new-task-priority">
+					  <option value="Normal" selected>Normal</option>
+					  <option value="High">High</option>
+					</select>
+
+					<br>
+					<label for="new-task-deadline">Deadline:</label>
+					<input type="date" name="new-task-deadline" id="new-task-deadline" autocomplete="off" required>
+
+					<br>
+					<button name="submit" id="new-task-submit">Create Task</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
 
      <!-- main body-->
 	 <div class="body-content">
@@ -38,53 +67,48 @@
 	 	<div class="col-1-4">
 	 		<section class="list-header">User 1</section> 
 
-	 		<button class="add-task-btn">Add Task</button>
+	 		<button class="add-task-btn" id="user-1-add-task" onclick="openPopup(this.id)">Add Task</button>
+
 	 		<select id="task-select">
 
     			<option value="All">All</option>
     			<option value="To do">To Do</option>
    				<option value="Doing">Doing</option>
    				<option value="Done">Done</option>
-			
+					
 			</select>
 
 	 		<ul class="task-list">
 	 			<li class="item-task">
 	 				<!-- <div class="task-wrapper"> -->
-		 				<div class="task todo pri-normal" id="u1t1">
+		 				<div class="task todo pri-Normal" id="u1t1">
 		 					<section class="task-name">Design the layout</section>
 		 					<ul class="task-details">
-		 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-		 						<li>Deadline: 21st January, 2018</li>
+		 						<li class="edit-del-task">
+		 							<button class="edit-task-btn">Edit</button>
+		 							<button id="t1" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button>
+		 						</li>
+		 						<li>Deadline: January 24, 2018</li>
 		 						<li>Priority: Normal</li>
 		 					</ul>
 		 				</div>
-		 				
-		 				 <!--<div class="task on-task-hover">
-		 					<section class="status-text">To do</section>
-		 					<section class="edit/del task">
-		 						<button class="edit-task-btn">Edit details</button>
-		 						<button class="del-task-btn">Delete Task</button>
-		 					</section>
-		 				</div>-->  
-	 				<!-- </div> -->
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task done pri-high">
+	 				<div class="task doing pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t2" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task doing pri-high">
+	 				<div class="task done pri-High">
 	 					<section class="task-name">Background check</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 18th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t3" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
@@ -96,7 +120,8 @@
 		user 2 --><div class="col-1-4">
 	 		<section class="list-header">User 2</section> 
 
-	 		<button class="add-task-btn">Add Task</button>
+	 		<button class="add-task-btn" id="user-2-add-task" onclick="openPopup(this.id)">Add Task</button>
+
 	 		<select id="task-select">
 
     			<option value="All">All</option>
@@ -107,81 +132,81 @@
 			</select>
 	 		<ul class="task-list">
 	 			<li class="item-task">
-	 				<div class="task done pri-normal">
+	 				<div class="task todo pri-Normal">
 	 					<section class="task-name">Declare the shortlist</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 15th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t4" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: Normal</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task todo pri-normal">
+	 				<div class="task todo pri-Normal">
 	 					<section class="task-name">Verify documents</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 28th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t5" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 28, 2018</li>
 	 						<li>Priority: Normal</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task doing pri-normal">
+	 				<div class="task todo pri-Normal">
 	 					<section class="task-name">Upload the certificates</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 20th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t6" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 20, 2018</li>
 	 						<li>Priority: Normal</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task todo pri-high">
+	 				<div class="task doing pri-High">
 	 					<section class="task-name">Conduct the PI</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 20th March, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t7" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: March 20, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task todo pri-normal">
+	 				<div class="task doing pri-Normal">
 	 					<section class="task-name">Declare result</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 1st April, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t8" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: Normal</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task done pri-high">
+	 				<div class="task done pri-High">
 	 					<section class="task-name">Conduct exam</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 10th December, 2017</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t9" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task done pri-high">
-	 					<section class="task-name">Very very very very long name</section>
+	 				<div class="task done pri-High">
+	 					<section class="task-name">Task name</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t10" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task done pri-high">
-	 					<section class="task-name">Very very very very long name</section>
+	 				<div class="task done pri-High">
+	 					<section class="task-name">Task name</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t11" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
@@ -191,7 +216,8 @@
 	 	user 3 --><div class="col-1-4">
 	 		<section class="list-header">User 3</section> 
 
-	 		<button class="add-task-btn">Add Task</button>
+	 		<button class="add-task-btn" id="user-3-add-task" onclick="openPopup(this.id)">Add Task</button>
+
 	 		<select id="task-select">
 
     			<option value="All">All</option>
@@ -202,31 +228,31 @@
 			</select>
 	 		<ul class="task-list">
 	 			<li class="item-task">
-	 				<div class="task doing pri-high">
+	 				<div class="task todo pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t12" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task todo pri-high">
+	 				<div class="task todo pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t13" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task todo pri-high">
+	 				<div class="task done pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t14" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
@@ -236,7 +262,8 @@
 	 	user 4 --><div class="col-1-4">
 	 		<section class="list-header">User 4</section> 
 
-	 		<button class="add-task-btn">Add Task</button>
+	 		<button class="add-task-btn" id="user-4-add-task" onclick="openPopup(this.id)">Add Task</button>
+
 	 		<select id="task-select">
 
     			<option value="All">All</option>
@@ -247,31 +274,31 @@
 			</select>
 	 		<ul class="task-list">
 	 			<li class="item-task">
-	 				<div class="task doing pri-high">
+	 				<div class="task todo pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t15" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task done pri-high">
+	 				<div class="task doing pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t16" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task done pri-high">
-	 					<section class="task-name">Very very very very long name</section>
+	 				<div class="task done pri-High">
+	 					<section class="task-name">Task name</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t17" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
@@ -281,7 +308,8 @@
 	 	user 5 --><div class="col-1-4">
 	 		<section class="list-header">User 5</section> 
 
-	 		<button class="add-task-btn">Add Task</button>
+	 		<button class="add-task-btn" id="user-5-add-task" onclick="openPopup(this.id)">Add Task</button>
+
 	 		<select id="task-select">
 
     			<option value="All">All</option>
@@ -292,21 +320,21 @@
 			</select>
 	 		<ul class="task-list">
 	 			<li class="item-task">
-	 				<div class="task todo pri-high">
+	 				<div class="task todo pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t18" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task doing pri-high">
+	 				<div class="task doing pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t19" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
@@ -316,7 +344,8 @@
 	 	user 6 --><div class="col-1-4">
 	 		<section class="list-header">User 6</section> 
 
-	 		<button class="add-task-btn">Add Task</button>
+	 		<button class="add-task-btn" id="user-6-add-task" onclick="openPopup(this.id)">Add Task</button>>
+			
 	 		<select id="task-select">
 
     			<option value="All">All</option>
@@ -327,21 +356,21 @@
 			</select>
 	 		<ul class="task-list">
 	 			<li class="item-task">
-	 				<div class="task todo pri-high">
+	 				<div class="task todo pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t20" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
 	 			</li>
 	 			<li class="item-task">
-	 				<div class="task doing pri-high">
+	 				<div class="task done pri-High">
 	 					<section class="task-name">Think about the idea</section>
 	 					<ul class="task-details">
-	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button class="del-task-btn">Delete</button></li>
-	 						<li>Deadline: 17th January, 2018</li>
+	 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button><button id="t21" onclick="removeTask(this.id);return false;" class="del-task-btn">Delete</button></li>
+	 						<li>Deadline: January 24, 2018</li>
 	 						<li>Priority: High</li>
 	 					</ul>
 	 				</div>
@@ -349,6 +378,8 @@
 	 		</ul>
 	 	</div>
 	 </div>
+
+<script type="text/javascript" src="tasks.js"></script>
 </body>
 
 </html>

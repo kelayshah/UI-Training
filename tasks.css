@@ -42,7 +42,7 @@
   background-color: white;
   overflow-y: auto;    
   overflow-x: hidden;
-  max-height: 620px;
+  max-height: 630px;
 }
 
 .list-header{
@@ -76,6 +76,7 @@
 }
 
 .task-details{
+  color: black;
   font-style: italic; 
   font-size: 13px;
   text-align: right;
@@ -95,4 +96,22 @@
 
 .done{
   background-color: rgb(159,229,164);
+}
+
+.add-task-form{
+  text-align: left;
+}
+
+#new-task-name,#new-task-status,#new-task-deadline,#new-task-priority{
+  margin: 4px 0px;
+}
+
+
+#new-task-submit{
+  margin: 10px
+  width: 120px;
+  height: 25px;
+  border: 1px solid gray;
+  font-size: 14px;
+  border-radius: 5%;
 }

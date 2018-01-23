@@ -12,40 +12,61 @@
 			<img id="logo" src="logo.jpg">
 			<span id="headname"> easyCollab</span>
 		</section>
-		
-	    <!--<section id="side-heading">
-	    	<h3 id="sidename">Project Collaboration</h3>
-	    </section>-->
 	</div>
 	 
 	 <nav class="menu">
 	    <a class="btn-menu home-head" href="index.html">Home</a>
 	    <a class="btn-menu tasks-head" href="tasks.html">Tasks</a>
 	    <a class="btn-menu users-head" href="users.html">Users</a>
-	    <button class="add-user-btn">Add User</button>
+	    <button class="add-user-btn" onclick="openPopup();">Add User</button>
 	  </nav>
 </header>
 
 <body>
-	<!-- body header -->
-	<!--  <div class="body-header">
-	 	<section id="head-body">Users</section> 
-	 </div> -->
+	
+	<!-- add user popup -->
+	<div id="add-user-popup" class="overlay">
+		<div class="popup">
+			<h2>Add a new user</h2>
+			<a class="close" href="#">×</a>
+			<div class="add-user-popup-content">
+				<form id="add-user-form" onsubmit="addUser();return false;">
+					<label for="new-user-name">Name:</label>
+					<input type="text" name="new-user-name" id="new-user-name" autocomplete="off" required>
 
-	  	 <!-- add user -->
-	 <!-- <div class="add-user">
-	 	<button class="add-user-btn">Add User</button>
-	 </div>
- -->
+					<br>
+					<label for="new-user-skype">Skype ID:</label>
+					<input type="text" name="new-user-skype" id="new-user-skype" autocomplete="off" required>
+
+					<br>
+					<label for="new-user-email">Email ID:</label>
+					<input type="email" name="new-user-email" id="new-user-email" autocomplete="off" required>
+
+					<br>
+					<label for="new-user-role">Role:</label>
+					<input type="text" name="new-user-role" id="new-user-role" autocomplete="off" required>
+
+					<br>
+					<label for="new-user-image">Upload Image:</label>
+					<input type="file" name="new-user-image" id="new-user-image" accept=".jpg, .jpeg, .png" required>
+
+					<br>
+					<button name="submit" id="new-user-submit">Submit</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
      <!-- main body-->
 	 <div class="body-content">
 
 	 	<div class="user-display">
-	 	<ul>
-	 		<li class="user">
+	 	<ul id="all-users">
+	 		<li id="user-1" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 1</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u1" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -54,10 +75,10 @@
 	 				<img src="user.jpeg" alt="User 1">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-2" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 2</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u2" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -66,10 +87,10 @@
 	 				<img src="user.jpeg" alt="User 2">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-3" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 3</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u3" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -78,10 +99,10 @@
 	 				<img src="user.jpeg" alt="User 3">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-4" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 4</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u4" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -90,10 +111,10 @@
 	 				<img src="user.jpeg" alt="User 4">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-5" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 5</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u5" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -102,10 +123,10 @@
 	 				<img src="user.jpeg" alt="User 5">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-6" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 6</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u6" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -114,10 +135,10 @@
 	 				<img src="user.jpeg" alt="User 6">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-7" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 7</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u7" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -126,10 +147,10 @@
 	 				<img src="user.jpeg" alt="User 7">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-8" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 8</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u8" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -138,10 +159,10 @@
 	 				<img src="user.jpeg" alt="User 8">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-9" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 9</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u9" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -150,10 +171,10 @@
 	 				<img src="user.jpeg" alt="User 9">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-10" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 10</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u10" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -162,10 +183,10 @@
 	 				<img src="user.jpeg" alt="User 10">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-11" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 11</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u11" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -174,10 +195,10 @@
 	 				<img src="user.jpeg" alt="User 11">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-12" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 12</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u12" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -186,10 +207,10 @@
 	 				<img src="user.jpeg" alt="User 12">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-13" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 13</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u13" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -198,10 +219,10 @@
 	 				<img src="user.jpeg" alt="User 13">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-14" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 14</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u14" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -210,10 +231,10 @@
 	 				<img src="user.jpeg" alt="User 14">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-15" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 15</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u15" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -222,10 +243,10 @@
 	 				<img src="user.jpeg" alt="User 15">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-16" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 16</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u16" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -234,10 +255,10 @@
 	 				<img src="user.jpeg" alt="User 16">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-17" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 17</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u17" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -246,10 +267,10 @@
 	 				<img src="user.jpeg" alt="User 17">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-18" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 18</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u18" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -258,10 +279,10 @@
 	 				<img src="user.jpeg" alt="User 18">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-19" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 19</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u19" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -270,10 +291,10 @@
 	 				<img src="user.jpeg" alt="User 19">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-20" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 20</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u20" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -282,10 +303,10 @@
 	 				<img src="user.jpeg" alt="User 20">
 	 			</section>	
 	 		</li>
-	 		<li class="user">
+	 		<li id="user-21" class="user">
 	 			<section class="user-section">
 	 				<section class="user-name">User 21</section>
-	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button class="del-user-btn">Delete</button></section>
+	 				<section class="edit-del-user"><button class="edit-user-btn">Edit</button><button id="u21" onclick="removeUser(this.id);return false;" class="del-user-btn">Delete</button></section>
 	 				<section class="role">Role: Product Engineer</section>
 	 				<section class="skypeID">Skype ID: abcdef</section>
 	 				<section class="email">Email ID: abc@def.com</section>
@@ -297,6 +318,8 @@
 	 	</ol>
 	 	</div>
 	 </div>
+
+<script type="text/javascript" src="users.js"></script>
 </body>
 
 </html>

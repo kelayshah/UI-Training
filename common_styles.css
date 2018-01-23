@@ -32,6 +32,10 @@ ul{
   text-align: center;
 }
 
+button{
+  cursor: pointer;
+}
+
 .body-content{
   display: inline-flex;
   width: 100%;
@@ -75,7 +79,11 @@ ul{
   /*margin-top: 5px;*/
   margin-left: 5px;
   border: 1px solid #dfe2e5;
-  padding: 5px 15px;
+  padding: 2px 10px;
+}
+
+.home-head{
+  margin-left: 10px;
 }
 
 .body-header{
@@ -88,4 +96,55 @@ ul{
   font: 24px Arial;
   font-variant: small-caps;
   color: rgb(62,65,79);
+}
+
+.overlay {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  color: rgb(88, 24, 69);
+  margin: 100px auto;
+  padding: 20px;
+  background: rgb(249, 249, 249);
+  border: 2px solid rgb(88, 24, 69);
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  text-align: center;
+  margin-top: 0;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: rgb(255,0,0);
 }
