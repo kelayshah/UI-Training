@@ -42,7 +42,7 @@
 				
 					<div class="form-element">
 						<label for="new-task-status">Task Status:</label>
-						<select name="new-task-status" id="new-task-status">
+						<select name="new-task-status" id="new-task-status" required>
 						  <option value="todo" selected>Todo</option>
 						  <option value="doing">Doing</option>
 						  <option value="done">Done</option>
@@ -51,7 +51,7 @@
 
 					<div class="form-element">
 						<label for="new-task-priority">Task Priority:</label>
-						<select name="new-task-priority" id="new-task-priority">
+						<select name="new-task-priority" id="new-task-priority" required>
 						  <option value="Normal" selected>Normal</option>
 						  <option value="High">High</option>
 						</select>
@@ -59,7 +59,7 @@
 
 					<div class="form-element">
 						<label for="new-task-assignee">Assignee:</label>
-						<select name="new-task-assignee" id="new-task-assignee">
+						<select name="new-task-assignee" id="new-task-assignee" required>
 						  
 						</select>
 					</div>
@@ -115,7 +115,7 @@
 				
 					<div class="form-element">
 						<label for="edit-task-status">Task Status:</label>
-						<select name="edit-task-status" id="edit-task-status">
+						<select name="edit-task-status" id="edit-task-status" required>
 						  <option value="todo" selected>Todo</option>
 						  <option value="doing">Doing</option>
 						  <option value="done">Done</option>
@@ -124,7 +124,7 @@
 
 					<div class="form-element">
 						<label for="edit-task-priority">Task Priority:</label>
-						<select name="edit-task-priority" id="edit-task-priority">
+						<select name="edit-task-priority" id="edit-task-priority" required>
 						  <option value="Normal" selected>Normal</option>
 						  <option value="High">High</option>
 						</select>
@@ -132,7 +132,7 @@
 
 					<div class="form-element">
 						<label for="edit-task-assignee">Assignee:</label>
-						<select name="edit-task-assignee" id="edit-task-assignee">
+						<select name="edit-task-assignee" id="edit-task-assignee" required>
 								  
 						</select>
 					</div>
@@ -151,112 +151,8 @@
 
 
      <!-- main body-->
-	 <div class="body-content">
+	 <div id="body-content">
 
-	 	<!-- user 1 -->
-	 	<div id="user1" class="col-1-4">
-	 		<section class="list-header">User 1</section> 
-
-	 		<button class="add-task-btn" id="user-1-add-task">Add Task</button>
-
-	 		<select id="task-select">
-
-    			<option value="All">All</option>
-    			<option value="To do">To Do</option>
-   				<option value="Doing">Doing</option>
-   				<option value="Done">Done</option>
-					
-			</select>
-
-	 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);" ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">
-	 			
-	 		</ul>
-	 	</div><!--
-		user 2 --><div id="user2" class="col-1-4">
-	 		<section class="list-header">User 2</section> 
-
-	 		<button class="add-task-btn" id="user-2-add-task">Add Task</button>
-
-	 		<select id="task-select">
-
-    			<option value="All">All</option>
-    			<option value="To do">To Do</option>
-   				<option value="Doing">Doing</option>
-   				<option value="Done">Done</option>
-			
-			</select>
-	 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);" ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">
-	 			
-	 		</ul>
-	 	</div><!-- 
-	 	user 3 --><div id="user3" class="col-1-4">
-	 		<section class="list-header">User 3</section> 
-
-	 		<button class="add-task-btn" id="user-3-add-task">Add Task</button>
-
-	 		<select id="task-select">
-
-    			<option value="All">All</option>
-    			<option value="To do">To Do</option>
-   				<option value="Doing">Doing</option>
-   				<option value="Done">Done</option>
-			
-			</select>
-	 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);" ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">
-	 			
-	 		</ul>
-	 	</div><!-- 
-	 	user 4 --><div id="user4" class="col-1-4">
-	 		<section class="list-header">User 4</section> 
-
-	 		<button class="add-task-btn" id="user-4-add-task">Add Task</button>
-
-	 		<select id="task-select">
-
-    			<option value="All">All</option>
-    			<option value="To do">To Do</option>
-   				<option value="Doing">Doing</option>
-   				<option value="Done">Done</option>
-			
-			</select>
-	 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);" ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">
-	 			
-	 		</ul>
-	 	</div><!-- 
-	 	user 5 --><div id="user5" class="col-1-4">
-	 		<section class="list-header">User 5</section> 
-
-	 		<button class="add-task-btn" id="user-5-add-task">Add Task</button>
-
-	 		<select id="task-select">
-
-    			<option value="All">All</option>
-    			<option value="To do">To Do</option>
-   				<option value="Doing">Doing</option>
-   				<option value="Done">Done</option>
-			
-			</select>
-	 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);" ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">
-	 			
-	 		</ul>
-	 	</div><!-- 
-	 	user 6 --><div id="user6" class="col-1-4">
-	 		<section class="list-header">User 6</section> 
-
-	 		<button class="add-task-btn" id="user-6-add-task">Add Task</button>
-			
-	 		<select id="task-select">
-
-    			<option value="All">All</option>
-    			<option value="To do">To Do</option>
-   				<option value="Doing">Doing</option>
-   				<option value="Done">Done</option>
-			
-			</select>
-	 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);" ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">
-	 			
-	 		</ul>
-	 	</div>
 	 </div>
 
 <script type="text/javascript" src="tasks.js"></script>

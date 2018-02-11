@@ -16,7 +16,7 @@
   color: rgb(88, 24, 69);
 }
 
-.col-1-4 {
+.user-column {
   width: 240px;
   min-width: 240px;
   height: 730px;
@@ -51,6 +51,7 @@
 }
 
 .task-list{
+  margin-top: 5px;
   border: 2px solid gray;
   padding: 5px;
   background-color: white;
@@ -64,6 +65,7 @@
   text-align: center;
   margin-bottom: 5px;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .add-task-btn{
@@ -138,4 +140,8 @@
 .view-task-popup-content li{
   text-align: left;
   margin: 8px 0px;
+}
+
+.task-checkboxes {
+  margin-top: 5px;
 }

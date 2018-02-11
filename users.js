@@ -4,60 +4,6 @@ Data (Model)
 -----------------------------------------------------------------------------------
 */
 
-let model = {
-			users : {
-					 user1: {
-						user_id : "user1",
-						name: "User 1",
-						role: "Product Engineer",
-						email: "abc@def.com",
-						skype: "abc",
-						image_src: "user.jpeg"
-					 },
-					 user2: {
-					 	user_id : "user2",
-						name: "User 2dwgbsdvGvfefabdvrebadsvws",
-						role: "Product EngineerrwdbSDVCHRBBfsvxc",
-						email: "abc@def.comwrhSBFDVCXGWRsfdvcx",
-						skype: "abcrgsVDXCGRSDVCRGEsfvc",
-						image_src: "user.jpeg"
-					 },
-					 user3: {
-					 	user_id : "user3",
-						name: "User 3",
-						role: "Product Engineer",
-						email: "abc@def.com",
-						skype: "abc",
-						image_src: "user.jpeg"
-					 },
-					 user4: {
-					 	user_id : "user4",
-						name: "User 4",
-						role: "Product Engineer",
-						email: "abc@def.com",
-						skype: "abc",
-						image_src: "user.jpeg"
-					 },
-					 user5: {
-					 	user_id : "user5",
-						name: "User 5",
-						role: "Product Engineer",
-						email: "abc@def.com",
-						skype: "abc",
-						image_src: "user.jpeg"
-					 },
-					 user6: {
-					 	user_id : "user6",
-						name: "User 6",
-						role: "Product Engineer",
-						email: "abc@def.com",
-						skype: "abc",
-						image_src: "user.jpeg"
-					 }
-					},
-
-			userNum : 7
-} 
 
 /*
 -----------------------------------------------------------------------------------
@@ -90,7 +36,7 @@ let controller = {
 				}
 
 				else if(target.matches(".del-user-btn")){
-					if (confirm("Are you sure you want to delete the user?")){
+					if (confirm("Are you sure you want to delete the user?\nNote: All the tasks associated with the user will also be deleted!")){
 						controller.removeUser(userId);
 					}
 				}
@@ -113,12 +59,41 @@ let controller = {
 		},
 
 		getUserList: function(){
-			return model.users;
+			let userList = localStorage.getItem("users");
+			if(!userList)
+				return null;
+			else{
+				return JSON.parse(userList);
+			}
+		},
+
+		setUserList: function(userList){
+			let userListString = JSON.stringify(userList);
+			localStorage.setItem("users",userListString);
+		},
+
+		getUserNum: function(){
+			let userNum = localStorage.getItem("userNum");
+			if(!userNum)
+				return null;
+			else{
+				return Number(userNum);
+			}
+		},
+
+		setUserNum: function(userNum){
+			localStorage.setItem("userNum",userNum);
 		},
 
 		addNewUser : function(){
+			let userNum = controller.getUserNum();
+			if(!userNum){
+				userNum = 0;
+			}
+			controller.setUserNum(userNum+1);
+
 			let newUser = {
-				user_id: "user"+model.userNum++, 
+				user_id: "user"+userNum, 
 				name: document.getElementById("new-user-name").value,
 				skype: document.getElementById("new-user-skype").value,
 				email: document.getElementById("new-user-email").value,
@@ -126,17 +101,25 @@ let controller = {
 				image_src: document.getElementById("new-user-image").value
 			};
 
-			model.users[newUser.user_id] = newUser;
+			let userList = controller.getUserList();
+			if(!userList){
+				userList = {};
+			}
+			userList[newUser.user_id] = newUser;
+			controller.setUserList(userList);
 			userInfo.addUserToView(newUser);
 		},
 
 		removeUser: function(userToDeleteId){
-			delete model.users[userToDeleteId];
+			let userList = controller.getUserList();
+			delete userList[userToDeleteId];
+			controller.setUserList(userList);
 			userInfo.removeUserFromView(userToDeleteId);
 		},
 
 		editUser: function(userToEditId){
-			let userToEdit = model.users[userToEditId];
+			let userList = controller.getUserList();
+			let userToEdit = userList[userToEditId];
 
 			userToEdit.name = document.getElementById("edit-user-name").value;
 			userToEdit.skype = document.getElementById("edit-user-skype").value;
@@ -144,6 +127,8 @@ let controller = {
 			userToEdit.role = document.getElementById("edit-user-role").value;
 			userToEdit.image_src = document.getElementById("edit-user-image").value;
 			
+			userList[userToEditId] = userToEdit;
+			controller.setUserList(userList);
 			userInfo.displayEditedUser(userToEdit);
 		}
 };
@@ -182,7 +167,7 @@ let userInfo = {
 				 				<section title="'+userToAdd.email+'"class="email">Email ID: '+userToAdd.email+'</section>\
 					 			</section>\
 					 			<section class="user-image">\
-					 				<img src="'+userToAdd.image_src +'" alt=" '+userToAdd.name+'">\
+					 				<img src="'+userToAdd.image_src.substring(12) +'" alt=" '+userToAdd.name+'">\
 					 			</section>';
 
 			var elem = document.getElementById("all-users");

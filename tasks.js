@@ -9,163 +9,6 @@ Data (Model)
 -----------------------------------------------------------------------------------
 */
 
-let model = {
-		tasks: {
-				task1: {
-					task_id: "task1",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user1"
-				 },
-				 task2: {
-					task_id: "task2",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "High",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user1"
-				 },
-				 task3: {
-					task_id: "task3",
-					task_name: "Some task name is very very very long",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user1"
-				 },
-				 task4: {
-					task_id: "task4",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "High",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user2"
-				 },
-				 task5: {
-					task_id: "task5",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user2"
-				 },
-				 task6: {
-					task_id: "task6",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user2"
-				 },
-				 task7: {
-					task_id: "task7",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "High",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user3"
-				 },
-				 task8: {
-					task_id: "task8",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user3"
-				 },
-				 task9: {
-					task_id: "task9",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user3"
-				 },
-				 task10: {
-					task_id: "task10",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "Normal",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user3"
-				 },
-				 task11: {
-					task_id: "task11",
-					task_name: "Some task name",
-					deadline: "2018-01-31",
-					status: "todo",
-					priority: "High",
-					task_description: "This task is related to XYZ. The important thing is that this task is ABC and so DEF.",
-					assignee_id: "user3"
-				 }
-			},
-
-		users : {
-			 user1: {
-				user_id : "user1",
-				name: "User 1",
-				role: "Product Engineer",
-				email: "abc@def.com",
-				skype: "abc",
-				image_src: "user.jpeg"
-			 },
-			 user2: {
-			 	user_id : "user2",
-				name: "User 2",
-				role: "Product Engineer",
-				email: "abc@def.com",
-				skype: "abc",
-				image_src: "user.jpeg"
-			 },
-			 user3: {
-			 	user_id : "user3",
-				name: "User 3",
-				role: "Product Engineer",
-				email: "abc@def.com",
-				skype: "abc",
-				image_src: "user.jpeg"
-			 },
-			 user4: {
-			 	user_id : "user4",
-				name: "User 4",
-				role: "Product Engineer",
-				email: "abc@def.com",
-				skype: "abc",
-				image_src: "user.jpeg"
-			 },
-			 user5: {
-			 	user_id : "user5",
-				name: "User 5",
-				role: "Product Engineer",
-				email: "abc@def.com",
-				skype: "abc",
-				image_src: "user.jpeg"
-			 },
-			 user6: {
-			 	user_id : "user6",
-				name: "User 6",
-				role: "Product Engineer",
-				email: "abc@def.com",
-				skype: "abc",
-				image_src: "user.jpeg"
-			 }
-		},
-
-		selectedUserId: "user1",
-		taskNum: 12
-		};
 
 
 /*
@@ -186,7 +29,23 @@ let controller = {
 
 			document.body.addEventListener('click',function(event){
 				let target = event.target;
-				
+
+				if(target.matches(".display-task-todo")){
+					let userId = target.closest(".user-column").id;
+					userTasks.handleDisplayTasks(userId,"todo");
+				}
+
+				else if(target.matches(".display-task-doing")){
+					let userId = target.closest(".user-column").id;
+					userTasks.handleDisplayTasks(userId,"doing");
+				}
+
+				else if(target.matches(".display-task-done")){
+					let userId = target.closest(".user-column").id;
+					userTasks.handleDisplayTasks(userId,"done");
+				}
+
+				// else 
 				if(target.matches("#view-task-edit")){
 					let taskId = target.closest("#view-task-popup").dataset.taskId;
 					userTasks.showEditTaskForm(taskId);
@@ -196,14 +55,14 @@ let controller = {
 				else if(target.matches("#view-task-delete")){
 					let taskId = target.closest("#view-task-popup").dataset.taskId;
 					if (confirm("Are you sure you want to delete the user?")){
-						controller.removeTask(taskId);
+						controller.removeTask(taskId,true);
 						document.location.href = "#";
 					}
 				}
 
 				else if(target.matches(".add-task-btn")){
-					let userId = target.closest(".col-1-4").id;
-					model.selectedUserId = userId;
+					let userId = target.closest(".user-column").id;
+					controller.setSelectedUser(userId);
 					userTasks.showAddTaskForm(true);
 					window.location.href = "#add-task-popup";
 				}
@@ -220,7 +79,7 @@ let controller = {
 
 				else if(target.matches(".del-task-btn")){
 					if (confirm("Are you sure you want to delete the user?")){
-						controller.removeTask(taskId);
+						controller.removeTask(taskId,true);
 					}
 				}
 
@@ -260,26 +119,71 @@ let controller = {
 		dropHandler: function(event){
 			event.preventDefault();
 			let movedTaskId = event.dataTransfer.getData("text");
-			let newAssignee = event.target.closest(".col-1-4").id;
-			model.tasks[movedTaskId].assignee_id = newAssignee;
+			let newAssignee = event.target.closest(".user-column").id;
+			
+			let taskList = controller.getTaskList();
+			taskList[movedTaskId].assignee_id = newAssignee;
+			controller.setTaskList(taskList);
 			event.target.closest(".task-list").appendChild(document.getElementById(movedTaskId));
 		},
 
 		getTaskList: function(){
-			return model.tasks;
+			let taskList = localStorage.getItem("tasks");
+			if(!taskList)
+				return null;
+			else{
+				return JSON.parse(taskList);
+			}
+		},
+
+		setTaskList: function(taskList){
+			let taskListString = JSON.stringify(taskList);
+			localStorage.setItem("tasks",taskListString);
 		},
 
 		getSelectedUser: function(){
-			return model.selectedUserId;
+			let selectedUser = localStorage.getItem("selectedUser");
+			if(!selectedUser)
+				return null;
+			else{
+				return selectedUser;
+			}
+		},
+
+		setSelectedUser: function(selectedUser){
+			localStorage.setItem("selectedUser",selectedUser);
 		},
 
 		getUserList: function(){
-			return model.users;
+			let userList = localStorage.getItem("users");
+			if(!userList)
+				return null;
+			else{
+				return JSON.parse(userList);
+			}
+		},
+
+		getTaskNum: function(){
+			let taskNum = localStorage.getItem("taskNum");
+			if(!taskNum)
+				return null;
+			else{
+				return Number(taskNum);
+			}
+		},
+
+		setTaskNum: function(taskNum){
+			localStorage.setItem("taskNum",taskNum);
 		},
 
 		addNewTask : function(){
+			let taskNum = controller.getTaskNum();
+			if(!taskNum)
+				taskNum=0;
+			controller.setTaskNum(taskNum+1);
+
 			let newTask = {
-				task_id: "task"+model.taskNum++, 
+				task_id: "task"+ taskNum,
 				task_name: document.getElementById("new-task-name").value,
 				deadline: document.getElementById("new-task-deadline").value,
 				status: document.getElementById("new-task-status").value,
@@ -288,17 +192,26 @@ let controller = {
 				assignee_id: document.getElementById("new-task-assignee").value,
 			};
 
-			model.tasks[newTask.task_id] = newTask;
+			let taskList = controller.getTaskList();
+			if(!taskList){
+				taskList = {};
+			}
+			taskList[newTask.task_id] = newTask;
+			controller.setTaskList(taskList);
 			userTasks.addTaskToView(newTask);
 		},
 
-		removeTask: function(taskToDeleteId){
-			delete model.tasks[taskToDeleteId];
-			userTasks.removeTaskFromView(taskToDeleteId);
+		removeTask: function(taskToDeleteId,userExists){
+			let taskList = controller.getTaskList();
+			delete taskList[taskToDeleteId];
+			controller.setTaskList(taskList);
+			if(userExists) 
+				userTasks.removeTaskFromView(taskToDeleteId);
 		},
 
 		editTask: function(taskToEditId){
-			let taskToEdit = model.tasks[taskToEditId];
+			let taskList = controller.getTaskList();
+			let taskToEdit = taskList[taskToEditId];
 			
 			let oldStatus = taskToEdit.status;
 			let oldPriority = taskToEdit.priority;
@@ -310,7 +223,9 @@ let controller = {
 			taskToEdit.priority = document.getElementById("edit-task-priority").value;
 			taskToEdit.task_description = document.getElementById("edit-task-description").value;
 			taskToEdit.assignee_id = document.getElementById("edit-task-assignee").value;
-			
+
+			taskList[taskToEditId] = taskToEdit;
+			controller.setTaskList(taskList);
 			userTasks.displayEditedTask(taskToEdit,oldAssignee,oldStatus,oldPriority);
 		}
 };
@@ -325,12 +240,26 @@ View
 let userTasks = {
 
 		init : function(){
+
+			let users_list = controller.getUserList();
+
+			for(user in users_list){
+				let newUser = users_list[user];
+				userTasks.addUserNameToView(newUser);
+			}
 			
 			let tasks_list = controller.getTaskList();
+			if(!tasks_list)
+				return;
 
 			for(task in tasks_list){
 				let newTask = tasks_list[task];
-				this.addTaskToView(newTask);
+				let assignee_id = newTask.assignee_id;
+				if(!users_list[assignee_id]){
+					controller.removeTask(newTask.task_id,false);
+					continue;
+				}
+				userTasks.addTaskToView(newTask);
 			}
 		},
 
@@ -338,6 +267,27 @@ let userTasks = {
 			let date = new Date(dateNumber);
 			let dateString = monthNames[date.getMonth()]+" "+date.getDate()+", "+date.getFullYear();
 			return dateString;
+		},
+
+		addUserNameToView: function(user){
+			let userDiv = document.createElement("div");
+			userDiv.setAttribute("class","user-column");
+			userDiv.setAttribute("id",user.user_id);
+
+			userDiv.innerHTML = '<section class="list-header">'+ user.name +'</section><button class="add-task-btn">Add Task</button>\
+						 		 <div class="task-checkboxes">\
+							      <label><input type="checkbox" class="display-task-todo" checked/>Todo</label>\
+							      <label >\
+							        <input type="checkbox" class="display-task-doing" checked/>Doing</label>\
+							       <label >\
+							        <input type="checkbox" class="display-task-done" checked/>Done</label>\
+							    </div>\
+						 		<ul class="task-list" ondragstart="controller.dragStartHandler(event);"\
+						 		 ondragover="controller.dragOverHandler(event);" ondrop="controller.dropHandler(event);">\
+						 		</ul>';
+
+			let parentDiv = document.getElementById("body-content");
+			parentDiv.appendChild(userDiv);
 		},
 
 		addTaskToView : function(taskToAdd){
@@ -382,6 +332,17 @@ let userTasks = {
 			document.getElementById("view-task-priority").innerHTML = "<strong>Priority:</strong> "+taskToShow.priority;
 			document.getElementById("view-task-deadline").innerHTML = "<strong>Deadline:</strong> "+userTasks.getDateString(taskToShow.deadline);
 			document.getElementById("view-task-assignee").innerHTML = "<strong>Assignee:</strong> "+all_users[taskToShow.assignee_id].name;
+		},
+
+		handleDisplayTasks: function(userId,taskStatus){
+			let all_tasks = controller.getTaskList();
+			let taskDivs = document.getElementById(userId).querySelector(".task-list").querySelectorAll(".item-task");
+			let boxChecked = document.getElementById(userId).querySelector(".task-checkboxes").querySelector(".display-task-"+taskStatus).checked;
+			taskDivs.forEach(function(task){
+				if(taskStatus==all_tasks[task.id].status){
+					boxChecked?task.style.display = 'block':task.style.display = 'none';
+				} 
+			});
 		},
 
 		showAddTaskForm : function(userKnown){

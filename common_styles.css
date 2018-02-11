@@ -81,7 +81,7 @@ button{
   margin-left: 10px;
 }
 
-.body-content{
+#body-content{
   display: inline-flex;
   width: 100%;
   padding: 10px;
