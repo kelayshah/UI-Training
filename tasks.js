@@ -125,6 +125,7 @@ let controller = {
 			taskList[movedTaskId].assignee_id = newAssignee;
 			controller.setTaskList(taskList);
 			event.target.closest(".task-list").appendChild(document.getElementById(movedTaskId));
+			userTasks.handleDisplayTasks(newAssignee,taskList[movedTaskId].status);
 		},
 
 		getTaskList: function(){
@@ -310,6 +311,7 @@ let userTasks = {
 			let assignee = document.getElementById(taskToAdd.assignee_id);
 			let taskList = assignee.querySelector(".task-list");
 			taskList.appendChild(newTask);
+			userTasks.handleDisplayTasks(taskToAdd.assignee_id,taskToAdd.status);
 			document.location.href = "#";
 		},
 
