@@ -1,0 +1,27 @@
+{
+  "name": "project-react",
+  "version": "1.0.0",
+  "description": "adding react to project",
+  "main": "tasks_React.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelayshah/UI-Training.git"
+  },
+  "author": "Kelay Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kelayshah/UI-Training/issues"
+  },
+  "homepage": "https://github.com/kelayshah/UI-Training#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}

@@ -72,10 +72,10 @@ let namespace = function(){
 			},
 
 			addNewTask : function(){
-				let taskNum = controller.getTaskNum();
+				let taskNum = this.getTaskNum();
 				if(!taskNum)
 					taskNum=0;
-				controller.setTaskNum(taskNum+1);
+				this.setTaskNum(taskNum+1);
 
 				let newTask = {
 					task_id: "task"+ taskNum,
@@ -87,25 +87,25 @@ let namespace = function(){
 					assignee_id: document.getElementById("new-task-assignee").value,
 				};
 
-				let taskList = controller.getTaskList();
+				let taskList = this.getTaskList();
 				if(!taskList){
 					taskList = {};
 				}
 				taskList[newTask.task_id] = newTask;
-				controller.setTaskList(taskList);
+				this.setTaskList(taskList);
 				userTasks.addTaskToView(newTask);
 			},
 
 			removeTask: function(taskToDeleteId,userExists){
-				let taskList = controller.getTaskList();
+				let taskList = this.getTaskList();
 				delete taskList[taskToDeleteId];
-				controller.setTaskList(taskList);
+				this.setTaskList(taskList);
 				if(userExists) 
 					userTasks.removeTaskFromView(taskToDeleteId);
 			},
 
 			editTask: function(taskToEditId){
-				let taskList = controller.getTaskList(),
+				let taskList = this.getTaskList(),
 					taskToEdit = taskList[taskToEditId],
 					oldStatus = taskToEdit.status,
 					oldPriority = taskToEdit.priority,
@@ -119,7 +119,7 @@ let namespace = function(){
 				taskToEdit.assignee_id = document.getElementById("edit-task-assignee").value;
 
 				taskList[taskToEditId] = taskToEdit;
-				controller.setTaskList(taskList);
+				this.setTaskList(taskList);
 				userTasks.displayEditedTask(taskToEdit,oldAssignee,oldStatus,oldPriority);
 			}
 	};
@@ -139,7 +139,7 @@ let namespace = function(){
 
 				for(user in users_list){
 					let newUser = users_list[user];
-					userTasks.addUserNameToView(newUser);
+					this.addUserNameToView(newUser);
 				}
 				
 				let tasks_list = controller.getTaskList();
@@ -153,7 +153,7 @@ let namespace = function(){
 						controller.removeTask(newTask.task_id,false);
 						continue;
 					}
-					userTasks.addTaskToView(newTask);
+					this.addTaskToView(newTask);
 				}
 
 				document.getElementById("head-add-task-btn").addEventListener('click',function(event){
@@ -278,7 +278,7 @@ let namespace = function(){
 				 					<ul class="task-details">\
 				 						<li class="edit-del-task"><button class="edit-task-btn">Edit</button>\
 				 						<button class="del-task-btn">Delete</button></li>\
-				 						<li id="task-deadline">Deadline: '+ userTasks.getDateString(taskToAdd.deadline) + '</li>\
+				 						<li id="task-deadline">Deadline: '+ this.getDateString(taskToAdd.deadline) + '</li>\
 				 						<li id="task-priority">Priority: '+ taskToAdd.priority +'</li>\
 				 					</ul>\
 				 				</div>';
@@ -286,7 +286,7 @@ let namespace = function(){
 				let assignee = document.getElementById(taskToAdd.assignee_id),
 					taskList = assignee.querySelector(".task-list");
 				taskList.appendChild(newTask);
-				userTasks.handleDisplayTasks(taskToAdd.assignee_id,taskToAdd.status);
+				this.handleDisplayTasks(taskToAdd.assignee_id,taskToAdd.status);
 				document.location.href = "#";
 			},
 
@@ -306,7 +306,7 @@ let namespace = function(){
 				document.getElementById("view-task-description").innerHTML = "<strong>Description:</strong> "+taskToShow.task_description;
 				document.getElementById("view-task-status").innerHTML = "<strong>Status:</strong> "+taskToShow.status;
 				document.getElementById("view-task-priority").innerHTML = "<strong>Priority:</strong> "+taskToShow.priority;
-				document.getElementById("view-task-deadline").innerHTML = "<strong>Deadline:</strong> "+userTasks.getDateString(taskToShow.deadline);
+				document.getElementById("view-task-deadline").innerHTML = "<strong>Deadline:</strong> "+this.getDateString(taskToShow.deadline);
 				document.getElementById("view-task-assignee").innerHTML = "<strong>Assignee:</strong> "+all_users[taskToShow.assignee_id].name;
 			},
 
@@ -382,7 +382,7 @@ let namespace = function(){
 				let task = document.getElementById(editedTask.task_id);
 
 				task.querySelector(".task-name").innerHTML = editedTask.task_name;
-				task.querySelector("#task-deadline").innerHTML = "Deadlne: "+userTasks.getDateString(editedTask.deadline);
+				task.querySelector("#task-deadline").innerHTML = "Deadlne: "+this.getDateString(editedTask.deadline);
 				task.querySelector("#task-priority").innerHTML = "Priority: "+editedTask.priority;
 
 				if(oldPriority!= editedTask.priority){
@@ -396,8 +396,8 @@ let namespace = function(){
 				}
 
 				if(oldAssignee!=editedTask.assignee_id){
-					let assignee = document.getElementById(editedTask.assignee_id);
-					let taskList = assignee.querySelector(".task-list");
+					let assignee = document.getElementById(editedTask.assignee_id),
+						taskList = assignee.querySelector(".task-list");
 					taskList.appendChild(task);
 				}
 				document.location.href = "#";
@@ -419,10 +419,9 @@ let namespace = function(){
 
 			dropHandler: function(event){
 				event.preventDefault();
-				let movedTaskId = event.dataTransfer.getData("text");
-				let newAssignee = event.target.closest(".user-column").id;
-				
-				let taskList = controller.getTaskList();
+				let movedTaskId = event.dataTransfer.getData("text"),
+					newAssignee = event.target.closest(".user-column").id,
+					taskList = controller.getTaskList();
 				taskList[movedTaskId].assignee_id = newAssignee;
 				controller.setTaskList(taskList);
 				event.target.closest(".task-list").appendChild(document.getElementById(movedTaskId));
